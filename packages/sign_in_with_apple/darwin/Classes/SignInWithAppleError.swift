@@ -8,6 +8,7 @@ import Flutter
 import UIKit
 #endif
 
+@available(iOS 13.0, macOS 10.15, *)
 public enum SignInWithAppleError {
     // An error for the case we are running on a not supported platform
     //
@@ -86,6 +87,11 @@ public enum SignInWithAppleError {
                 errorCode = "authorization-error/notHandled"
             case .failed:
                 errorCode = "authorization-error/failed"
+#if os(iOS) && swift(>=5.5)
+            // new case since Xcode 13, but only on iOS SDK at the moment
+            case .notInteractive:
+                errorCode = "authorization-error/notInteractive"
+#endif
             @unknown default:
                 print("[SignInWithApplePlugin]: Unknown authorization error code: \(code)");
             }

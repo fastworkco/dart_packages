@@ -23,23 +23,19 @@ public enum SignInWithAppleError {
     
     // In case there was an error while getting the state of the credentials for a specific user identifier
     // The first argument will be the localized error message
-    @available(iOS 13.0, macOS 10.15, *)
     case credentialsError(String)
     
     // In case we receive an unexpected credentials state
-    @available(iOS 13.0, macOS 10.15, *)
     case unexpectedCredentialsState(ASAuthorizationAppleIDProvider.CredentialState)
     
     // In case we get some unknown credential type in the successful authorization callback
     //
     // This contains the credential
-    @available(iOS 13.0, macOS 10.15, *)
     case unknownCredentials(ASAuthorizationCredential)
     
     // In case there was an error while trying to perform an authorization request
     //
     // This contains the actual authorization error code and the localized error message
-    @available(iOS 13.0, macOS 10.15, *)
     case authorizationError(ASAuthorizationError.Code, String)
     
     func toFlutterError() -> FlutterError {
